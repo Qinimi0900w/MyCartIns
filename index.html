@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Визитка — Ваше Имя</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-1: #f4f1ff;
+      --bg-2: #ffe9f3;
+      --card: rgba(255, 255, 255, 0.72);
+      --border: rgba(255, 255, 255, 0.9);
+      --text: #1d1b2e;
+      --muted: #6b6880;
+      --accent: #7c5cff;
+      --accent-2: #ff5c9d;
+      --shadow: 0 20px 60px rgba(76, 54, 160, 0.18);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-1: #12111c;
+        --bg-2: #1e1530;
+        --card: rgba(30, 28, 46, 0.7);
+        --border: rgba(255, 255, 255, 0.08);
+        --text: #f3f1ff;
+        --muted: #a3a0b8;
+        --shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      }
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+      font-family: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: linear-gradient(135deg, var(--bg-1), var(--bg-2));
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Мягкие цветные пятна на фоне */
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.45;
+      z-index: 0;
+      pointer-events: none;
+    }
+    body::before { background: var(--accent); top: -100px; left: -100px; }
+    body::after  { background: var(--accent-2); bottom: -120px; right: -100px; }
+
+    .card {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 400px;
+      padding: 40px 28px 32px;
+      text-align: center;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      animation: rise 0.7s ease-out both;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .avatar {
+      width: 128px;
+      height: 128px;
+      margin: 0 auto 20px;
+      padding: 4px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    }
+    .avatar img,
+    .avatar svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      background: var(--bg-1);
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .role {
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    }
+
+    .about {
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 54px;
+      padding: 0 20px;
+      border-radius: 16px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:active { transform: scale(0.98); }
+    .btn svg { width: 22px; height: 22px; flex-shrink: 0; }
+
+    .btn.telegram {
+      background: #229ed9;
+      box-shadow: 0 8px 20px rgba(34, 158, 217, 0.35);
+    }
+    .btn.instagram {
+      background: linear-gradient(45deg, #f9ce34, #ee2a7b 50%, #6228d7);
+      box-shadow: 0 8px 20px rgba(238, 42, 123, 0.35);
+    }
+
+    footer {
+      margin-top: 28px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+  <main class="card">
+    <div class="avatar">
+      <img src="photo.jpg" >
+      <!-- Фото-заглушка. Чтобы поставить своё фото, положите файл photo.jpg
+           рядом с index.html и замените весь <svg>...</svg> на:
+           <img src="photo.jpg" alt="Ваше Имя"> -->
+    </div>
+
+    <h1>Жасмина</h1>
+    <span class="role">Чем я занимаюсь ?</span>
+
+    <p class="about">
+      ### IT и Маркетинг
+      Работаете **проект-менеджером и маркетологом**: продвигаете приложение [Booka.lite] Instagram _.ina23 создаёте Reels и UI-макеты, а также автоматизируете бизнес-процессы.
+      ### Горный туризм 
+      Работаете **горным гидом** в Кыргызстане: организуете походные маршруты, совершаете восхождения на вершины и ведёте блог об альпинизме в Instagram.
+    </p>
+
+    <nav class="links">
+      <!-- Замените your_username на свой ник -->
+      <a class="btn telegram" href="https://t.me/merfi_ni" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.7.8l-4.8-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.9 8.9-8c.4-.3-.1-.5-.6-.2L6.6 12.8 1.9 11.3c-1-.3-1-1 .2-1.5L20.6 2.7c.9-.3 1.6.2 1.3 1.6z"/>
+        </svg>
+        Telegram
+      </a>
+      <a class="btn instagram" href="https://instagram.com/_.ina23" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+        </svg>
+        Instagram
+      </a>
+    </nav>
+
+    <footer>© 2026 Жасмина</footer>
+  </main>
+
+</body>
+</html>
